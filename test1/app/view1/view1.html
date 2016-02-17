@@ -1,0 +1,112 @@
+<style>
+    input.ng-invalid {
+        background-color: lightblue;
+    }
+</style>
+
+<div>
+    <p>This is the partial for view 1.</p>
+
+    <p>名字 : <input type="text" ng-model="name" ng-init="name='John'"></p>
+    <h1>Hello {{name}}</h1>
+
+    <h1>过滤器 Hello {{name | uppercase}}</h1>
+    <span ng-bind="name"></span>
+    lastname:<span ng-bind="lastname"></span>
+    <p>我的第一个表达式： {{ 5 + 5 }}</p>
+    <p>过滤器 的第一个表达式： {{ (5 + 5)| currency }}</p>
+
+    <div ng-init="quantity=1;cost=5">
+
+        <p>总价： {{ quantity * cost }}</p>
+        <p>也可以这样写 总价： <span ng-bind="quantity * cost"></span></p>
+    </div>
+
+
+    <div ng-init="person={firstName:'John',lastName:'Doe'}">
+
+        <p>还可以绑定对象 姓为 {{ person.lastName }}</p>
+
+    </div>
+
+    <div ng-init="quantity=1;price=5">
+
+        <h2>价格计算器</h2>
+
+        数量： <input type="number" ng-model="quantity">
+        价格： <input type="number" ng-model="price">
+
+        <p><b>总价：</b> {{ quantity * price }}</p>
+
+    </div>
+
+
+    <div ng-init="names=['Jani','Hege','Kai']">
+        <p>使用 ng-repeat 来循环数组 使用过滤器排序</p>
+        <ul>
+            <li ng-repeat="x in names | orderBy">
+                {{ x }}
+            </li>
+        </ul>
+        <div>
+
+            查询：<input type="text" ng-model="myfilter">
+            <div ng-app="" ng-init="namesobj=[
+{name:'Jani',country:'Norway'},
+{name:'Hege',country:'Sweden'},
+{name:'Kai',country:'Denmark'}]">
+
+                <p>循环对象：</p>
+                <ul>
+                    <!--这排序功能强大了-->
+                    <!--{{ childrenArray | filter : 'a' }} //匹配属性值中含有a的-->
+                    <!--{{ childrenArray | filter : 4 }}  //匹配属性值中含有4的-->
+                    <!--{{ childrenArray | filter : {name : 'i'} }} //参数是对象，匹配name属性中含有i的-->
+                    <!--{{childrenArray | filter : func }}  //参数是函数，指定返回age>4的-->
+
+                    <li ng-repeat="x in namesobj | filter:myfilter | orderBy:'country'">
+                        {{ x.name + ', ' + x.country }}
+                    </li>
+                </ul>
+
+            </div>
+
+            <!--也可以自定义指令         -->
+            <div runoob-directive="tmp"></div>
+
+            <form ng-app="" name="myForm">
+                Email:
+                <input type="email" name="myAddress" ng-model="myemail" required>
+                <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+                编辑文本域，不同状态背景颜色会发送变化。
+
+                文本域添加了 required 属性，该值是必须的，如果为空则是不合法的。
+            </form>
+            {{myemail}}
+
+
+        </div>
+
+        <div>
+            myurl:<span ng-bind="myUrl"></span>
+        </div>
+
+        <div ng-app="myApp" ng-controller="personCtrl">
+
+            名: <input type="text" ng-model="firstName"><br>
+            姓: <input type="text" ng-model="lastName"><br>
+            <br>
+            姓名: {{fullName()}}
+
+        </div>
+
+        <h1>tmp:读取json</h1>
+        <ul>
+            <li ng-repeat="x in myData">{{x.Name + " / " + x.Country}}</li>
+        </ul>
+
+
+        <h1>tmp:读取jsonp{{myjsonp}}</h1>
+        <h1>tmp:读取jsonp{{myjsonp2}}</h1>
+    </div>
+</div>

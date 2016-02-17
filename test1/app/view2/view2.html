@@ -1,0 +1,110 @@
+<style>
+    table, th, td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+</style>
+
+<p>This is the partial for view 2.</p>
+{{myHeader}}
+<div ng-bind="theTime|date:'yyyy-MM-dd HH:mm:ss'"></div>
+
+<!--<select ng-model="seleted" ng-options="(a.name + '爱吃' + a.food) for a in animals">-->
+<select ng-model="selectedName" ng-options="x.captionall for x in myjsonp2">
+    <option value="">请选择</option>
+</select>
+
+<h1>你选择的是: {{selectedName.captionall}}</h1>
+
+
+<table>
+    <tr>
+        <th>序号</th>
+        <th ng-click="f='captionall'; rev=!rev" style="cursor:pointer">标题</th>
+        <th ng-click="f='areaguochina'; rev=!rev" style="cursor:pointer">国家</th>
+    </tr>
+    <tr ng-repeat="x in myjsonp2 | orderBy : f : rev">
+        <td>{{ $index + 1 }}</td>
+        <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.captionall }}</td>
+        <td ng-if="$even" >{{ x.captionall }}</td>
+        <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.areaguochina }}</td>
+        <td ng-if="$even" >{{ x.areaguochina }}</td>
+    </tr>
+</table>
+
+
+<p>
+    <button ng-disabled="!mySwitch">点我!</button>
+</p>
+
+<p>
+    <input type="checkbox" ng-model="mySwitch">按钮
+</p>
+
+<p>
+    {{ mySwitch }}
+</p>
+
+
+<p ng-show="true">我是可见的。</p>
+
+<p ng-show="false">我是不可见的。</p>
+
+<p ng-show="hour > 12" ng-init="hour=13">12我是可见的。</p>
+
+<p ng-hide="true">我是不可见的。</p>
+
+<p ng-hide="false">我是可见的。</p>
+
+
+<button ng-click="count = count + 1">点我！</button>
+
+<p>{{ count }}</p>
+
+
+<p ng-hide="myVar">隐藏/显示</p>
+<button ng-click="toggle()">>隐藏/显示</button>
+
+
+<div ng-init="myVar = 'http://www.runoob.com/wp-content/uploads/2014/06/angular.jpg'">
+    <h1>Angular</h1>
+    <img ng-srcset="{{myVar}}">
+
+</div>
+
+
+<details ng-open="showDetails">
+    <summary>学的不仅是技术，更是梦想！</summary>
+    <p> - 菜鸟教程</p>
+</details>
+
+<form name="test_form">
+    <input type="text" name="a" ng-model="a" required ng-pattern="/abc/"/>
+    <span ng-click="see()">{{ test_form.$error }}</span>
+</form>
+
+
+
+    <p ng-if="ah == 1">判断为真, {{ name }}</p>
+
+    <p ng-if="ah != 1">判断为假, {{ name }}</p>
+
+<div>
+    <p>a: <input ng-model="ah" /></p>
+    <p>name: <input ng-model="name" /></p>
+</div>
+
+
+<p>
+    Showing of 'interpolate' filter:
+    {{ 'Current version is v%VERSION%.' | interpolate }}
+</p>
