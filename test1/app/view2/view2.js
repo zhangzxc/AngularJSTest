@@ -10,6 +10,8 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', function($scope, $timeout, $interval, $http) {
+  $scope.pageClass="view2";
+
   $scope.myHeader = "Hi";
   $timeout(function () {
     $scope.myHeader = "How are you today?";

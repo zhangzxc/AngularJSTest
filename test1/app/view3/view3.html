@@ -1,8 +1,47 @@
-<div class="container">
+<div class="panel panel-primary">
     <h2>Panel Footer</h2>
     <div class="panel panel-default">
         <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group" style="color:{{color}}" ng-init="color='red'">
+                            <div class="col-md-2 control-label">Email:</div>
+                            <div class="col-md-10"><input type="email" class="form-control" ng-model="userInfo.email"
+                                                          placeholder="例如：test@test.com"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label" ng-class="{error: isError, warning: userInfo.password != userInfo.passwordagain}">Password:</div>
+                            <div class="col-md-10"><input type="password" class="form-control" ng-model="userInfo.password"
+                                                          placeholder="字母+数字"></div>
+                        </div>
+
+                        <div class="form-group" >
+                            <div class="col-md-2 control-label" ng-class="{ warning: userInfo.password != userInfo.passwordagain}">Password again:</div>
+                            <div class="col-md-10"><input type="password" class="form-control" ng-model="userInfo.passwordagain"
+                                                          placeholder="字母+数字"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="checkbox" ng-model="userInfo.remember">
+                                Remember me
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" ng-click="getUserInfo()" value="获取数据">
+                                <input type="button" ng-click="setColor()" value="设置颜色">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
         <div class="panel-footer">Panel Footer</div>
     </div>
 </div>

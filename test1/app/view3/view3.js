@@ -10,6 +10,20 @@ angular.module('myApp.view3', ['ngRoute'])
     }])
 
     .controller('View3Ctrl', function ($scope, $timeout, $interval, $http) {
+        $scope.pageClass="view3";
 
+        //$scope.isError = true;
 
-    });
+        $scope.userInfo = {
+            email: "6842942@qq.com", password: "a123456", remember: true
+        };
+
+        $scope.getUserInfo = function () {
+            console.log($scope.userInfo);
+        };
+
+        $scope.setColor = function () {
+            $scope.color = "blue";
+        };
+    })
+;

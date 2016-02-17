@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.5.1-build.4606+sha.b8b5b88
+ * @license AngularJS v1.5.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -749,10 +749,8 @@ ngRouteModule.directive('ngView', ngViewFillContentFactory);
  * Requires the {@link ngRoute `ngRoute`} module to be installed.
  *
  * @animations
- * | Animation                        | Occurs                              |
- * |----------------------------------|-------------------------------------|
- * | {@link ng.$animate#enter enter}  | when the new element is inserted to the DOM |
- * | {@link ng.$animate#leave leave}  | when the old element is removed from to the DOM  |
+ * enter - animation is used to bring new content into the browser.
+ * leave - animation is used to animate existing content away.
  *
  * The enter and leave animation occur concurrently.
  *
