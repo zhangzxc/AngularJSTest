@@ -5,24 +5,43 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="myform" name="myform" ng-submit="save()" novalidate>
                         <div class="form-group" style="color:{{color}}" ng-init="color='red'">
                             <div class="col-md-2 control-label">Email:</div>
-                            <div class="col-md-10"><input type="email" class="form-control" ng-model="userInfo.email"
-                                                          placeholder="例如：test@test.com"></div>
+                            <div class="col-md-10"><input type="email" name="uemail" class="form-control"
+                                                          ng-model="userInfo.email"
+                                                          placeholder="例如：test@test.com" required></div>
+                            <div class="col-md-offset-2 col-md-10"
+                                 ng-if="myform.uemail.$dirty && myform.uemail.$invalid">
+                                <span ng-if="myform.uemail.$error.required">请填写email</span>
+                                <span ng-if="myform.uemail.$error.email">请正确填写email</span>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-2 control-label" ng-class="{error: isError, warning: userInfo.password != userInfo.passwordagain}">Password:</div>
-                            <div class="col-md-10"><input type="password" class="form-control" ng-model="userInfo.password"
-                                                          placeholder="字母+数字"></div>
+                            <div class="col-md-2 control-label"
+                                 ng-class="{error: isError, warning: userInfo.password != userInfo.passwordagain}">
+                                Password:
+                            </div>
+                            <div class="col-md-10"><input type="password" class="form-control"
+                                                          ng-model="userInfo.password"
+                                                          placeholder="字母+数字" required></div>
                         </div>
 
-                        <div class="form-group" >
-                            <div class="col-md-2 control-label" ng-class="{ warning: userInfo.password != userInfo.passwordagain}">Password again:</div>
-                            <div class="col-md-10"><input type="password" class="form-control" ng-model="userInfo.passwordagain"
-                                                          placeholder="字母+数字"></div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label"
+                                 ng-class="{ warning: userInfo.password != userInfo.passwordagain}">Password again:
+                            </div>
+                            <div class="col-md-10"><input type="password" class="form-control"
+                                                          ng-model="userInfo.passwordagain"
+                                                          placeholder="字母+数字" required></div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="checkbox" name="agree" ng-model="userInfo.agree" required> 注册条款
+                                <div ng-if=!userInfo.agree>请同意注册条款
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="checkbox" ng-model="userInfo.remember">
@@ -34,7 +53,12 @@
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="button" ng-click="getUserInfo()" value="获取数据">
                                 <input type="button" ng-click="setColor()" value="设置颜色">
+                                <input type="submit" ng-disabled="myform.$invalid">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="background-color: #0f0f0f;height: 100px;color: #c4e3f3" contenteditable="true" ng-model="content" title="edit">jdjdjdklslaslsal</div>
+                            {{content}}
                         </div>
 
                     </form>
@@ -45,3 +69,4 @@
         <div class="panel-footer">Panel Footer</div>
     </div>
 </div>
+
